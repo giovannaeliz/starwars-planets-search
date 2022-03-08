@@ -8,11 +8,11 @@ import Table from './components/Table';
 function App() {
   return (
 
-    <PlanetsProvider.Provider>
+    <PlanetsProvider>
       {/* <Search />
       <Filter /> */}
       <Table />
-    </PlanetsProvider.Provider>
+    </PlanetsProvider>
 
   );
 }
