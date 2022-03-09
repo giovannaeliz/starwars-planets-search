@@ -26,6 +26,7 @@ function Filter() {
           type="text"
           id="name-filter"
           data-testid="name-filter"
+          placeholder="planet name"
           value={ filterByName.name }
           onChange={ ({ target }) => setFilterByName({ name: target.value }) }
         />

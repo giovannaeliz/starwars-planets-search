@@ -7,9 +7,13 @@ import PlanetsContext from './PlanetsContext';
 function PlanetsProvider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [filter, setFilter] = useState('');
-  const [newTable, setNewTable] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [planetsName, setPlanetsName] = useState(planets);
+  const [filterByNumericValues,
+    setFilterByNumericValues] = useState([{
+    column: 'population',
+    comparison: 'maior que',
+    value: '100000' }]);
 
   useEffect(() => {
     const API = async () => {
@@ -24,13 +28,12 @@ function PlanetsProvider({ children }) {
     setPlanets,
     filter,
     setFilter,
-    newTable,
-    setNewTable,
     filterByName,
     setFilterByName,
     planetsName,
     setPlanetsName,
-    // handleSearch,
+    filterByNumericValues,
+    setFilterByNumericValues,
   };
 
   return (
