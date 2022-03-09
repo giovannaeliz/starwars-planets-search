@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
-  const { planets } = useContext(PlanetsContext);
+  const { planetsName } = useContext(PlanetsContext);
   const tablePlanets = [
     'Name',
     'Rotation Period',
@@ -30,7 +30,7 @@ function Table() {
         </tr>
       </tbody>
       <tfoot>
-        { planets.map((planetsMap) => (
+        { planetsName.map((planetsMap) => (
           <tr key={ planetsMap.name }>
             <td>{ planetsMap.name }</td>
             <td>{ planetsMap.rotation_period }</td>

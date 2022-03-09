@@ -6,20 +6,32 @@ import PlanetsContext from './PlanetsContext';
 
 function PlanetsProvider({ children }) {
   const [planets, setPlanets] = useState([]);
-  // const [filter, setFilter]
-  const value = {
-    planets,
-    setPlanets,
-  };
+  const [filter, setFilter] = useState('');
+  const [newTable, setNewTable] = useState([]);
+  const [filterByName, setFilterByName] = useState({ name: '' });
+  const [planetsName, setPlanetsName] = useState(planets);
 
   useEffect(() => {
     const API = async () => {
       const resultsAPI = await planetsAPI();
       setPlanets(resultsAPI.results);
-      // console.log(resultsAPI);
     };
     API();
   }, []);
+
+  const value = {
+    planets,
+    setPlanets,
+    filter,
+    setFilter,
+    newTable,
+    setNewTable,
+    filterByName,
+    setFilterByName,
+    planetsName,
+    setPlanetsName,
+    // handleSearch,
+  };
 
   return (
     <PlanetsContext.Provider value={ value }>
