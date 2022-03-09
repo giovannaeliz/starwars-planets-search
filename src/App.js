@@ -9,8 +9,8 @@ function App() {
   return (
 
     <PlanetsProvider>
-      {/* <Search />
-      <Filter /> */}
+      {/* <Search /> */}
+      {/* <Filter /> */}
       <Table />
     </PlanetsProvider>
 

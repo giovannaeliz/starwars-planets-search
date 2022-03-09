@@ -7,6 +7,7 @@ function Table() {
   const tablePlanets = [
     'Name',
     'Rotation Period',
+    'Orbital Period',
     'Diameter',
     'Climate',
     'Gravity',
