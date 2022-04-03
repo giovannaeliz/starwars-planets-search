@@ -1,9 +1,16 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
-  const { planetsName } = useContext(PlanetsContext);
+  const {
+    planetsName,
+    filterByNumericValues,
+    planets,
+    setPlanetsName,
+    comparison } = useContext(PlanetsContext);
+
   const tablePlanets = [
     'Name',
     'Rotation Period',
@@ -19,6 +26,24 @@ function Table() {
     'Edited',
     'URL',
   ];
+
+  useEffect(() => {
+    filterByNumericValues.forEach((filter) => {
+      if (filterByNumericValues > 0) {
+        const planeta = planets.filter((planet) => {
+          if (comparison === 'maior que') {
+            return Number(planet[filter.column] > Number(filter.value));
+          } if (comparison === 'menor que') {
+            Number(planet[filter.column] < Number(filter.value));
+          } if (comparison === 'igual a') {
+            return Number(planet[filter.column] === Number(filter.value));
+          }
+          return null;
+        });
+        setPlanetsName(planeta);
+      }
+    });
+  }, [filterByNumericValues, planets]);
 
   return (
     <table>
