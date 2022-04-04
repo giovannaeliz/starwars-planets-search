@@ -11,7 +11,7 @@ function PlanetsProvider({ children }) {
   const [planetsName, setPlanetsName] = useState(planets);
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [comparison, setComparison] = useState('maior que');
-  const [column, setColumn] = useState('');
+  const [column, setColumn] = useState('population');
   const [value, setValue] = useState('0');
 
   useEffect(() => {

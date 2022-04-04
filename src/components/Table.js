@@ -8,8 +8,7 @@ function Table() {
     planetsName,
     filterByNumericValues,
     planets,
-    setPlanetsName,
-    comparison } = useContext(PlanetsContext);
+    setPlanetsName } = useContext(PlanetsContext);
 
   const tablePlanets = [
     'Name',
@@ -29,21 +28,20 @@ function Table() {
 
   useEffect(() => {
     filterByNumericValues.forEach((filter) => {
-      if (filterByNumericValues > 0) {
-        const planeta = planets.filter((planet) => {
-          if (comparison === 'maior que') {
-            return Number(planet[filter.column] > Number(filter.value));
-          } if (comparison === 'menor que') {
-            Number(planet[filter.column] < Number(filter.value));
-          } if (comparison === 'igual a') {
-            return Number(planet[filter.column] === Number(filter.value));
-          }
-          return null;
-        });
-        setPlanetsName(planeta);
-      }
+      console.log(filter.column, 'oi');
+      const planeta = planets.filter((planet) => {
+        if (filter.comparison === 'maior que') {
+          return Number(planet[filter.column]) > Number(filter.value);
+        } if (filter.comparison === 'menor que') {
+          return Number(planet[filter.column]) < Number(filter.value);
+        } if (filter.comparison === 'igual a') {
+          return Number(planet[filter.column]) === Number(filter.value);
+        }
+        return null;
+      });
+      setPlanetsName(planeta);
     });
-  }, [filterByNumericValues, planets]);
+  }, [filterByNumericValues]);
 
   return (
     <table>
