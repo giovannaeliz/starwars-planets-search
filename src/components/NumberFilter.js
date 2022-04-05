@@ -28,7 +28,6 @@ function NumberFilter() {
         column, comparison, value,
       },
     ]));
-    console.log(filterByNumericValues);
   };
 
   return (
@@ -40,14 +39,26 @@ function NumberFilter() {
         id="select"
         data-testid="column-filter"
       >
-        { COLUMNOPTIONS.map((option) => (
-          <option
-            value={ option }
-            key={ option }
-          >
-            { option }
+        {
+          COLUMNOPTIONS.filter((columnName) => {
+            let isTrue = true;
+            filterByNumericValues.forEach((filter) => {
+              if (filter.column === columnName) {
+                isTrue = false;
+                // se a column selecionada for igual a column do filtro COLUMNOPTIONS, então muda para false(deletando)
+              }
+            });
+            return isTrue;
+          })
+            .map((option) => (
+              <option
+                value={ option }
+                key={ option }
+              >
+                { option }
 
-          </option>)) }
+              </option>))
+        }
       </select>
       <select
         value={ comparison }
