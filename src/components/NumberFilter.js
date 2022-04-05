@@ -11,6 +11,7 @@ function NumberFilter() {
     setColumn,
     value,
     setValue,
+    filterByNumericValues,
   } = useContext(PlanetsContext);
   const COLUMNOPTIONS = [
     'population',
@@ -21,12 +22,13 @@ function NumberFilter() {
   ];
 
   const handleClick = () => {
-    setFilterByNumericValues((prevState) => [
+    setFilterByNumericValues((prevState) => ([
       ...prevState,
       {
         column, comparison, value,
       },
-    ]);
+    ]));
+    console.log(filterByNumericValues);
   };
 
   return (
