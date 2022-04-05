@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
+import RemoveFilter from './RemoveFilter';
 
 function Filter() {
   const { filterByName,
@@ -31,6 +32,7 @@ function Filter() {
           onChange={ ({ target }) => setFilterByName({ name: target.value }) }
         />
       </label>
+      <RemoveFilter />
     </div>
   );
 }

@@ -88,6 +88,13 @@ function NumberFilter() {
       >
         FILTRAR
       </button>
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ () => setFilterByNumericValues([]) }
+      >
+        DELETAR
+      </button>
     </div>
   );
 }

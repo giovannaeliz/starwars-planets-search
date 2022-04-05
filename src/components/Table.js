@@ -8,7 +8,6 @@ function Table() {
     planetsName,
     filterByNumericValues,
     planets,
-    setPlanets,
     setPlanetsName } = useContext(PlanetsContext);
 
   const tablePlanets = [
@@ -28,8 +27,9 @@ function Table() {
   ];
 
   useEffect(() => {
+    let planetaFiltrado = planets;
     filterByNumericValues.forEach((filter) => {
-      const planeta = planets.filter((planet) => {
+      planetaFiltrado = planetaFiltrado.filter((planet) => {
         if (filter.comparison === 'maior que') {
           return Number(planet[filter.column]) > Number(filter.value);
         } if (filter.comparison === 'menor que') {
@@ -39,9 +39,10 @@ function Table() {
         }
         return null;
       });
-      setPlanetsName(planeta);
-      setPlanets(planeta); // aqui eu estou setando os planetas já filtrados, antes dava um erro porque ele filtrava a partir do que original, agora ele filtra a partir dos já filtrados.
+      console.log(planetaFiltrado);
+      // setPlanets(planeta); // aqui eu estou setando os planetas já filtrados, antes dava um erro porque ele filtrava a partir do que original, agora ele filtra a partir dos já filtrados.
     });
+    setPlanetsName(planetaFiltrado);
   }, [filterByNumericValues]);
 
   return (
