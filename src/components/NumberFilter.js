@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
+import OrderFilter from './OrderFilter';
 
 function NumberFilter() {
   const {
@@ -93,8 +94,9 @@ function NumberFilter() {
         data-testid="button-remove-filters"
         onClick={ () => setFilterByNumericValues([]) }
       >
-        DELETAR
+        REMOVER FILTROS
       </button>
+      <OrderFilter />
     </div>
   );
 }

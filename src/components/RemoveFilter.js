@@ -7,7 +7,7 @@ function RemoveFilter() {
   function handleRemoveFilters(e) {
     setFilterByNumericValues(filterByNumericValues.filter((item) => item.column !== e));
   }
-  console.log(filterByNumericValues);
+  // console.log(filterByNumericValues);
 
   return (
     <div>

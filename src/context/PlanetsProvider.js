@@ -13,7 +13,8 @@ function PlanetsProvider({ children }) {
   const [comparison, setComparison] = useState('maior que');
   const [column, setColumn] = useState('population');
   const [value, setValue] = useState('0');
-
+  const [order, setOrder] = useState({});
+  //  column: 'population', sort: 'ASC'
   useEffect(() => {
     const API = async () => {
       const resultsAPI = await planetsAPI();
@@ -39,6 +40,8 @@ function PlanetsProvider({ children }) {
     setColumn,
     value,
     setValue,
+    order,
+    setOrder,
   };
 
   return (
