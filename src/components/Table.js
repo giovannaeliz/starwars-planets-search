@@ -8,7 +8,9 @@ function Table() {
     planetsName,
     filterByNumericValues,
     planets,
-    setPlanetsName } = useContext(PlanetsContext);
+    setPlanetsName,
+    order,
+    orderASC } = useContext(PlanetsContext);
 
   const tablePlanets = [
     'Name',
@@ -25,6 +27,37 @@ function Table() {
     'Edited',
     'URL',
   ];
+  const NEGATIVE = -1;
+  const getPlanetsBy = (a, b) => {
+    if (order.column === 'name') {
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return NEGATIVE;
+      }
+      return 0;
+    }
+    if (orderASC === 'ASC') {
+      // console.log(a);
+      if (a[order.column] === 'unknown') {
+        return 1;
+      }
+      if (b[order.column] === 'unknown') {
+        return NEGATIVE;
+      }
+      return a[order.column] - b[order.column];
+    } if (orderASC === 'DESC') {
+      if (a[order.column] === 'unknown') {
+        return 1;
+      }
+      if (b[order.column] === 'unknown') {
+        return NEGATIVE;
+      }
+      return b[order.column] - a[order.column];
+    }
+    return 0;
+  };
 
   useEffect(() => {
     let planetaFiltrado = planets;
@@ -55,23 +88,34 @@ function Table() {
         </tr>
       </tbody>
       <tfoot>
-        { planetsName.map((planetsMap) => (
-          <tr key={ planetsMap.name }>
-            <td>{ planetsMap.name }</td>
-            <td>{ planetsMap.rotation_period }</td>
-            <td>{ planetsMap.orbital_period }</td>
-            <td>{ planetsMap.diameter }</td>
-            <td>{ planetsMap.climate }</td>
-            <td>{ planetsMap.gravity }</td>
-            <td>{ planetsMap.terrain }</td>
-            <td>{ planetsMap.surface_water }</td>
-            <td>{ planetsMap.population }</td>
-            <td>{ planetsMap.films }</td>
-            <td>{ planetsMap.created }</td>
-            <td>{ planetsMap.edited }</td>
-            <td>{ planetsMap.url }</td>
-          </tr>
-        )) }
+        { planetsName
+          .sort((a, b) => (
+            getPlanetsBy(a, b)
+          ))
+          .map((planetsMap) => (
+            <tr
+              key={ planetsMap.name }
+            >
+              <td
+                data-testid="planet-name"
+              >
+                { planetsMap.name }
+
+              </td>
+              <td>{ planetsMap.rotation_period }</td>
+              <td>{ planetsMap.orbital_period }</td>
+              <td>{ planetsMap.diameter }</td>
+              <td>{ planetsMap.climate }</td>
+              <td>{ planetsMap.gravity }</td>
+              <td>{ planetsMap.terrain }</td>
+              <td>{ planetsMap.surface_water }</td>
+              <td>{ planetsMap.population }</td>
+              <td>{ planetsMap.films }</td>
+              <td>{ planetsMap.created }</td>
+              <td>{ planetsMap.edited }</td>
+              <td>{ planetsMap.url }</td>
+            </tr>
+          )) }
       </tfoot>
     </table>
   );

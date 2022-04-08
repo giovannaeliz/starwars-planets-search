@@ -1,14 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function OrderFilter() {
-  const { order,
+  const {
     setOrder,
-    planets,
-    setPlanetsName } = useContext(PlanetsContext);
-  const [orderColumn, setOrderColumn] = useState('population');
-  const [orderASC, setOrderASC] = useState('ASC');
+    orderASC,
+    orderColumn,
+    setOrderASC,
+    setOrderColumn,
+  } = useContext(PlanetsContext);
+  // const [orderColumn, setOrderColumn] = useState('population');
+  // const [orderASC, setOrderASC] = useState('ASC');
 
   const COLUMNOPTIONS2 = [
     'population',
@@ -17,18 +20,18 @@ function OrderFilter() {
     'rotation_period',
     'surface_water',
   ];
-  const getPlanetsBy = () => {
-    planets.sort((a, b) => {
-      if (orderASC === 'ASC') {
-        return a[order.column] - b[order.column];
-      } if (orderASC === 'DESC') {
-        return b[order.column] - a[order.column];
-      }
-      return 0;
-    });
-    // setAttribute('data-testid', 'planet-name') serve pra colocar o atributo?;
-    setPlanetsName(planets);
-  };
+  // const getPlanetsBy = () => {
+  //   planets.sort((a, b) => {
+  //     if (orderASC === 'ASC') {
+  //       console.log(a);
+  //       return a[order.column] - b[order.column];
+  //     } if (orderASC === 'DESC') {
+  //       return b[order.column] - a[order.column];
+  //     }
+  //     return 0;
+  //   });
+  //   setPlanetsName(planets);
+  // };
   const handleButton = () => {
     setOrder(() => (
       {
@@ -36,7 +39,8 @@ function OrderFilter() {
         sort: orderASC,
       }
     ));
-    getPlanetsBy();
+    console.log(orderColumn);
+    // getPlanetsBy();
   };
   return (
     <form>
